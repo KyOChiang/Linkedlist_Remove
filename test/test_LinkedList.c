@@ -51,3 +51,8 @@ void test_Struct_AND_ptr_Element_should_create_properly(){
 	printf("Head pointer: %p\n",myList->head);
 	printf("Tail pointer: %p\n",myList->tail);
 }
+
+void test_either_element1_element2_or_element3_should_remove_properly(){
+	ptr2Element = remove_Element(myList, ptr2Element);
+	TEST_ASSERT_NULL(ptr2Element);
+}
