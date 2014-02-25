@@ -69,4 +69,19 @@ void test_either_element1_element2_or_element3_should_remove_properly(Element el
 	ptr2Element = remove_Element(myList, ptr2Element);
 	TEST_ASSERT_NOT_NULL(ptr2Element);
 	//printf("Address return by remove function: %p\n", remove_Element(myList, ptr2Element));
+	
+	//Test head, tail are point to the expected address when remove element0.
+	// TEST_ASSERT_EQUAL(&element[1], myList->head);
+	// TEST_ASSERT_EQUAL(&element[2], myList->tail);
+	
+	// Test element[0].next, tail are point to the expected address when remove element1.
+	// Only enable when removing the element 1 only.
+	// TEST_ASSERT_EQUAL(&element[2],element[0].next);
+	// TEST_ASSERT_EQUAL(&element[2], myList->tail);
+	
+	
+	// Test element[1].next, tail are point to the expected address when remove element1.
+	// Only enable when removing the element 2 only.
+	TEST_ASSERT_EQUAL(NULL,element[1].next);
+	TEST_ASSERT_EQUAL(&element[1], myList->tail);
 }
