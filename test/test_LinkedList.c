@@ -61,7 +61,12 @@ void test_either_element1_element2_or_element3_should_remove_properly(Element el
 	// element[0].data = 12412224;
 	// printf("Address element[0]: %p data:%d\n", &element[0],element[0].data);
 	
+	//Test pass and return the address of element being removed
+	//ptr2Element = (Element *)345235; Test with invalid element address
+	printf("\n");
+	ptr2Element = &element[0];
 	
 	ptr2Element = remove_Element(myList, ptr2Element);
-	TEST_ASSERT_NULL(ptr2Element);
+	TEST_ASSERT_NOT_NULL(ptr2Element);
+	printf("Address return by remove function: %p\n", remove_Element(myList, ptr2Element));
 }

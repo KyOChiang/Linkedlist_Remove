@@ -16,6 +16,6 @@ LinkedList *createLinkedList(){
 
 Element *remove_Element(LinkedList *myList, Element *elementPos){
 	
-	//return elementPos; //Should return the address for element being removed.
-	return NULL; //To test whether the return value work or not
+	return elementPos; //Should return the address for element being removed.
+	//return NULL; //To test whether the return value work or not
 }
