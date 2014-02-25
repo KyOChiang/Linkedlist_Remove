@@ -47,4 +47,7 @@ void test_Struct_AND_ptr_Element_should_create_properly(){
 	TEST_ASSERT_NOT_NULL(myList->head);
 	TEST_ASSERT_NOT_NULL(myList->tail);
 	TEST_ASSERT_NOT_EQUAL(0,element[0].data);
+	
+	printf("Head pointer: %p\n",myList->head);
+	printf("Tail pointer: %p\n",myList->tail);
 }
