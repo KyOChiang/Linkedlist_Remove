@@ -34,33 +34,33 @@ Element *remove_Element(LinkedList *myList, Element *elementPos){
 		myList->tail = ((myList->head)->next);
 		myList->length = (myList->length) - 1;
 		elementPos->data = 0;
-		printf("Delete element[0]......\n");
+		/*printf("Delete element[0]......\n");
 		printf("Current head: %p\n", (myList->head));
 		printf("Current tail: %p\n", (myList->tail));
 		printf("Current length: %d\n", (myList->length));
-		printf("Current data: %d\n", (elementPos->data));
+		printf("Current data: %d\n", (elementPos->data));*/
 	}
 	else if(elementPos == ((myList->head)->next)){
 		((myList->head)->next) = (((myList->head)->next)->next);
 		myList->tail = ((myList->head)->next);
 		myList->length = (myList->length) - 1;
 		elementPos->data = 0;
-		printf("Delete element[1]......\n");
+		/*printf("Delete element[1]......\n");
 		printf("Current element[0].next: %p\n", ((myList->head)->next));
 		printf("Current tail: %p\n", (myList->tail));
 		printf("Current length: %d\n", (myList->length));
-		printf("Current data: %d\n", (elementPos->data));
+		printf("Current data: %d\n", (elementPos->data));*/
 	}
 	else if(elementPos == (((myList->head)->next)->next)){
 		(((myList->head)->next)->next) = NULL;
 		myList->tail = ((myList->head)->next);
 		myList->length = (myList->length) - 1;
 		elementPos->data = 0;
-		printf("Delete element[2]......\n");
+		/*printf("Delete element[2]......\n");
 		printf("Current element[1].next: %p\n", (((myList->head)->next)->next));
 		printf("Current tail: %p\n", (myList->tail));
 		printf("Current length: %d\n", (myList->length));
-		printf("Current data: %d\n", (elementPos->data));
+		printf("Current data: %d\n", (elementPos->data));*/
 	}
 	else
 		printf("Bad access! Element cannot be found!\n");
