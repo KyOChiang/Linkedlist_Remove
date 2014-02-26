@@ -90,6 +90,10 @@ void test_removeElement_2_should_replace_the_element1_pointer_with_element2_next
 	
 	TEST_ASSERT_NOT_NULL(myList->head);
 	TEST_ASSERT_NOT_NULL(myList->tail);
+	
+	ptr2Element = remove_Element(myList, &element[2]);
+	TEST_ASSERT_EQUAL_PTR(&element[0],myList->head);
+	TEST_ASSERT_EQUAL_PTR(&element[1],myList->tail);
 	}
 
 
