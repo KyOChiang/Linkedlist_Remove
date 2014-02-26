@@ -68,6 +68,9 @@ void test_removeElement_1_should_replace_the_element0_pointer_with_element1_next
 	ptr2Element = remove_Element(myList, &element[1]);
 	
 	TEST_ASSERT_EQUAL_PTR(&element[0],myList->head);
+	TEST_ASSERT_EQUAL_PTR(&element[2],myList->tail);
+	TEST_ASSERT_EQUAL_PTR(&element[2],element[0].next);
+	
 }
 
 
