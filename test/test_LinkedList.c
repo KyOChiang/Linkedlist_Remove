@@ -17,9 +17,9 @@ void test_createLinkedList_should_create_and_init_LinkedList_head_tail_and_lengt
 	TEST_ASSERT_EQUAL(0, myList->length);
 }
 
-void test_removeElement_0_should_replace_the_element0_next_pointer_with_element1_next_pointer(){
+void test_removeElement_0_should_replace_the_head_pointer_with_element0_next_pointer(){
 	
-	int length = 3, i = 0;
+	// int length = 3, i = 0;
 	myList = createLinkedList();
 	Element element[3] = {{.next = &element[1],.data = 123},
 						  {.next = &element[2],.data = 456},
