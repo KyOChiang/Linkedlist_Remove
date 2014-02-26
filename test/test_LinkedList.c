@@ -74,6 +74,23 @@ void test_removeElement_1_should_replace_the_element0_pointer_with_element1_next
 	TEST_ASSERT_EQUAL_PTR(&element[1],ptr2Element);
 }
 
+void test_removeElement_2_should_replace_the_element1_pointer_with_element2_next_pointer(){
+	
+	// int length = 3, i = 0;
+	myList = createLinkedList();
+	Element element[3] = {{.next = &element[1],.data = 123},
+						  {.next = &element[2],.data = 456},
+						  {.next = NULL,.data = 789}};
+	
+	//To let head pointer store address of 1st element, tail pointer store the last element, 
+	//length store the no of element create.
+	myList->head = &element[0];
+	myList->tail = &element[2];
+	myList->length = 3;
+	
+	TEST_ASSERT_NOT_NULL(myList->head);
+	TEST_ASSERT_NOT_NULL(myList->tail);
+	}
 
 
 
