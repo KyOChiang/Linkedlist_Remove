@@ -146,4 +146,50 @@ void test_removeElement_1_within_4_elements_should_replace_the_element0_pointer_
 	TEST_ASSERT_EQUAL_PTR(&element[1],ptr2Element);
 }
 
+void test_removeElement_3_within_4_elements_should_replace_the_element2_pointer_with_element3_next_pointer(){
+	
+	// int length = 3, i = 0;
+	myList = createLinkedList();
+	Element element[4] = {{.next = &element[1],.data = 123},
+						  {.next = &element[2],.data = 145},
+						  {.next = &element[3],.data = 456},
+						  {.next = NULL,.data = 789}};
+	
+	//To let head pointer store address of 1st element, tail pointer store the last element, 
+	//length store the no of element create.
+	myList->head = &element[0];
+	myList->tail = &element[3];
+	myList->length = 4;
+	
+	ptr2Element = remove_Element(myList, &element[3]);
+	TEST_ASSERT_EQUAL_PTR(&element[0],myList->head);
+	TEST_ASSERT_EQUAL_PTR(&element[2],myList->tail);
+	TEST_ASSERT_EQUAL_PTR(NULL,element[2].next);
+	TEST_ASSERT_EQUAL(3,myList->length);
+	TEST_ASSERT_EQUAL(789,ptr2Element->data);
+	TEST_ASSERT_EQUAL_PTR(&element[3],ptr2Element);
+}
 
+void test_removeElement_0_within_4_elements_should_replace_the_head_pointer_with_element0_next_pointer(){
+	
+	// int length = 3, i = 0;
+	myList = createLinkedList();
+	Element element[4] = {{.next = &element[1],.data = 123},
+						  {.next = &element[2],.data = 145},
+						  {.next = &element[3],.data = 456},
+						  {.next = NULL,.data = 789}};
+	
+	//To let head pointer store address of 1st element, tail pointer store the last element, 
+	//length store the no of element create.
+	myList->head = &element[0];
+	myList->tail = &element[3];
+	myList->length = 4;
+	
+	ptr2Element = remove_Element(myList, &element[0]);
+	TEST_ASSERT_EQUAL_PTR(&element[1],myList->head);
+	TEST_ASSERT_EQUAL_PTR(&element[3],myList->tail);
+	TEST_ASSERT_EQUAL_PTR(NULL,element[3].next);
+	TEST_ASSERT_EQUAL(3,myList->length);
+	TEST_ASSERT_EQUAL(123,ptr2Element->data);
+	TEST_ASSERT_EQUAL_PTR(&element[0],ptr2Element);
+}

@@ -35,7 +35,9 @@ Element *remove_Element(LinkedList *myList, Element *elementPos){
 		myList->length = (myList->length) -1;
 	}
 	else if(elementPos == arrayElem[(myList->length - 1)].next){
-		myList->head->next->next = NULL;
+		myList->head = arrayElem[(myList->length) - 2].next;
+		myList->head->next = NULL;
+		myList->head = arrayElem[0].next;
 		myList->tail = arrayElem[(myList->length)-2].next;
 		myList->length = (myList->length) -1;
 	}
