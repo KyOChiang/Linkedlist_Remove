@@ -36,15 +36,15 @@ void test_removeElement_0_should_replace_the_head_pointer_with_element0_next_poi
 	myList->tail = &element[2];
 	myList->length = 3;
 	
-	TEST_ASSERT_NOT_NULL(myList->head);
-	TEST_ASSERT_NOT_NULL(myList->tail);
+	// TEST_ASSERT_NOT_NULL(myList->head);
+	// TEST_ASSERT_NOT_NULL(myList->tail);
 	
 	ptr2Element = remove_Element(myList, &element[0]);
 	
+	TEST_ASSERT_EQUAL(2,myList->length);
 	TEST_ASSERT_EQUAL_PTR(&element[1],myList->head);
 	TEST_ASSERT_EQUAL_PTR(&element[2],myList->tail);
-	TEST_ASSERT_EQUAL(0,element[0].data);
-	TEST_ASSERT_NOT_NULL(ptr2Element);
+	TEST_ASSERT_EQUAL(123,ptr2Element->data);
 	TEST_ASSERT_EQUAL_PTR(&element[0],ptr2Element);
 }
 
@@ -62,15 +62,13 @@ void test_removeElement_1_should_replace_the_element0_pointer_with_element1_next
 	myList->tail = &element[2];
 	myList->length = 3;
 	
-	TEST_ASSERT_NOT_NULL(myList->head);
-	TEST_ASSERT_NOT_NULL(myList->tail);
-	
 	ptr2Element = remove_Element(myList, &element[1]);
 	
 	TEST_ASSERT_EQUAL_PTR(&element[0],myList->head);
 	TEST_ASSERT_EQUAL_PTR(&element[2],myList->tail);
 	TEST_ASSERT_EQUAL_PTR(&element[2],element[0].next);
-	TEST_ASSERT_NOT_NULL(ptr2Element);
+	TEST_ASSERT_EQUAL(2,myList->length);
+	TEST_ASSERT_EQUAL(456,ptr2Element->data);
 	TEST_ASSERT_EQUAL_PTR(&element[1],ptr2Element);
 }
 
@@ -88,16 +86,14 @@ void test_removeElement_2_should_replace_the_element1_pointer_with_element2_next
 	myList->tail = &element[2];
 	myList->length = 3;
 	
-	TEST_ASSERT_NOT_NULL(myList->head);
-	TEST_ASSERT_NOT_NULL(myList->tail);
-	
 	ptr2Element = remove_Element(myList, &element[2]);
 	TEST_ASSERT_EQUAL_PTR(&element[0],myList->head);
 	TEST_ASSERT_EQUAL_PTR(&element[1],myList->tail);
 	TEST_ASSERT_EQUAL_PTR(NULL,element[1].next);
-	TEST_ASSERT_NOT_NULL(ptr2Element);
+	TEST_ASSERT_EQUAL(2,myList->length);
+	TEST_ASSERT_EQUAL(789,ptr2Element->data);
 	TEST_ASSERT_EQUAL_PTR(&element[2],ptr2Element);
-	}
+}
 
 
 
