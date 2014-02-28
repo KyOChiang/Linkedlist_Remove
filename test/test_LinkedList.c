@@ -96,5 +96,54 @@ void test_removeElement_2_should_replace_the_element1_pointer_with_element2_next
 	TEST_ASSERT_EQUAL_PTR(&element[2],ptr2Element);
 }
 
+void test_removeElement_2_within_4_elements_should_replace_the_element1_pointer_with_element2_next_pointer(){
+	
+	// int length = 3, i = 0;
+	myList = createLinkedList();
+	Element element[4] = {{.next = &element[1],.data = 123},
+						  {.next = &element[2],.data = 456},
+						  {.next = &element[3],.data = 456},
+						  {.next = NULL,.data = 789}};
+	
+	//To let head pointer store address of 1st element, tail pointer store the last element, 
+	//length store the no of element create.
+	myList->head = &element[0];
+	myList->tail = &element[3];
+	myList->length = 4;
+	
+	ptr2Element = remove_Element(myList, &element[2]);
+	TEST_ASSERT_EQUAL_PTR(&element[0],myList->head);
+	TEST_ASSERT_EQUAL_PTR(&element[3],myList->tail);
+	TEST_ASSERT_EQUAL_PTR(&element[3],element[1].next);
+	TEST_ASSERT_EQUAL_PTR(NULL,element[3].next);
+	TEST_ASSERT_EQUAL(3,myList->length);
+	TEST_ASSERT_EQUAL(456,ptr2Element->data);
+	TEST_ASSERT_EQUAL_PTR(&element[2],ptr2Element);
+}
+
+void test_removeElement_1_within_4_elements_should_replace_the_element0_pointer_with_element1_next_pointer(){
+	
+	// int length = 3, i = 0;
+	myList = createLinkedList();
+	Element element[4] = {{.next = &element[1],.data = 123},
+						  {.next = &element[2],.data = 145},
+						  {.next = &element[3],.data = 456},
+						  {.next = NULL,.data = 789}};
+	
+	//To let head pointer store address of 1st element, tail pointer store the last element, 
+	//length store the no of element create.
+	myList->head = &element[0];
+	myList->tail = &element[3];
+	myList->length = 4;
+	
+	ptr2Element = remove_Element(myList, &element[1]);
+	TEST_ASSERT_EQUAL_PTR(&element[0],myList->head);
+	TEST_ASSERT_EQUAL_PTR(&element[3],myList->tail);
+	TEST_ASSERT_EQUAL_PTR(&element[2],element[0].next);
+	TEST_ASSERT_EQUAL_PTR(NULL,element[3].next);
+	TEST_ASSERT_EQUAL(3,myList->length);
+	TEST_ASSERT_EQUAL(145,ptr2Element->data);
+	TEST_ASSERT_EQUAL_PTR(&element[1],ptr2Element);
+}
 
 

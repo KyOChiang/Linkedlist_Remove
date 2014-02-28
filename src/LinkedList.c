@@ -17,7 +17,7 @@ LinkedList *createLinkedList(){
 Element *remove_Element(LinkedList *myList, Element *elementPos){
 	
 	int i = 0;
-	Element arrayElem[myList->length];
+	Element arrayElem[myList->length], tempStore;
 	for(i=0;i<myList->length;i++,myList->head=(myList->head)->next){
 		arrayElem[i].next=myList->head;
 		// printf("%p\n", arrayElem[i].next);
@@ -40,17 +40,18 @@ Element *remove_Element(LinkedList *myList, Element *elementPos){
 		myList->length = (myList->length) -1;
 	}
 	else{
+		tempStore.next = myList->head;
 		while(elementPos!=arrayElem[i+1].next){
 			i++;
-			myList->head = myList->head->next;
+			tempStore.next = (tempStore.next)->next;
 		}
-		myList->head->next = arrayElem[i+2].next;//myList->head->next->next;
+		(tempStore.next)->next = arrayElem[i+2].next;//myList->head->next->next;
 		myList->tail = arrayElem[(myList->length - 1)].next;
 		myList->length = (myList->length) -1;
 	}
 	
-	
-	
-	
+	// i+0->next = i+2
+	// i+1->next = i+3
+		
 	return elementPos; //Should return the address for element being removed.
 }
