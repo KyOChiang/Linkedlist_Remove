@@ -15,54 +15,42 @@ LinkedList *createLinkedList(){
 }
 
 Element *remove_Element(LinkedList *myList, Element *elementPos){
-
-	/*printf("In src file.\nAddress of element: %p\n", elementPos); //Makesure this is the expected pass-in address
-	printf("Address of element[0]: %p\n", (myList->head));
-	printf("Address of element[1]: %p\n", (myList->head)->next);
-	printf("Address of element[2]: %p\n\n", ((myList->head)->next)->next);
 	
-	head -> 0 .next -> 1 .next -> 2 .next -> NULL
-	a) Delete element[0], head point to element[1] instead of 0, tail still point to the element[2]. 
-	b) Delete element[1], head point to element[0], tail point to element[2]. element[0].next no longer point to element[1]
-	  , it supposed point to element[2].
-	c) Delete element[2], head point to element[0], tail point to element[1]. element[1].next no longer point to element[2]
-	  , it supposed point NULL address now.
-	d) Length minus 1. Clear element[0].data into 0.*/
+	int i = 0;
+	Element arrayElem[myList->length];
+	for(i=0;i<myList->length;i++,myList->head=(myList->head)->next){
+		arrayElem[i].next=myList->head;
+		// printf("%p\n", arrayElem[i].next);
+	}
 	
-		if(elementPos == (myList->head)){
-		myList->head = elementPos->next;
-		myList->tail = ((myList->head)->next);
-		myList->length = (myList->length) - 1;
-		/*printf("Delete element[0]......\n");
-		printf("Current head: %p\n", (myList->head));
-		printf("Current tail: %p\n", (myList->tail));
-		printf("Current length: %d\n", (myList->length));
-		printf("Current data: %d\n", (elementPos->data));*/
+	myList->head = arrayElem[0].next;
+	i = 0;
+	// printf("%p\n", myList->head);
+	// printf("%p\n", myList->head->next);
+	// printf("%p\n", myList->head->next->next);
+	
+	if(elementPos == arrayElem[0].next){
+		myList->head = myList->head->next;
+		myList->tail = arrayElem[(myList->length - 1)].next;
+		myList->length = (myList->length) -1;
 	}
-	else if(elementPos == ((myList->head)->next)){
-		((myList->head)->next) = (((myList->head)->next)->next);
-		myList->tail = ((myList->head)->next);
-		myList->length = (myList->length) - 1;
-		/*printf("Delete element[1]......\n");
-		printf("Current element[0].next: %p\n", ((myList->head)->next));
-		printf("Current tail: %p\n", (myList->tail));
-		printf("Current length: %d\n", (myList->length));
-		printf("Current data: %d\n", (elementPos->data));*/
+	else if(elementPos == arrayElem[(myList->length - 1)].next){
+		myList->head->next->next = NULL;
+		myList->tail = arrayElem[(myList->length)-2].next;
+		myList->length = (myList->length) -1;
 	}
-	else if(elementPos == (((myList->head)->next)->next)){
-		(((myList->head)->next)->next) = NULL;
-		myList->tail = ((myList->head)->next);
-		myList->length = (myList->length) - 1;
-		/*printf("Delete element[2]......\n");
-		printf("Current element[1].next: %p\n", (((myList->head)->next)->next));
-		printf("Current tail: %p\n", (myList->tail));
-		printf("Current length: %d\n", (myList->length));
-		printf("Current data: %d\n", (elementPos->data));*/
+	else{
+		while(elementPos!=arrayElem[i+1].next){
+			i++;
+			myList->head = myList->head->next;
+		}
+		myList->head->next = arrayElem[i+2].next;//myList->head->next->next;
+		myList->tail = arrayElem[(myList->length - 1)].next;
+		myList->length = (myList->length) -1;
 	}
-	else
-		printf("Bad access! Element cannot be found!\n");
-
+	
+	
+	
 	
 	return elementPos; //Should return the address for element being removed.
-	//return NULL; //To test whether the return value work or not
 }

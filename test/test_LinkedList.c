@@ -35,12 +35,13 @@ void test_removeElement_0_should_replace_the_head_pointer_with_element0_next_poi
 	myList->head = &element[0];
 	myList->tail = &element[2];
 	myList->length = 3;
-	
-	// TEST_ASSERT_NOT_NULL(myList->head);
-	// TEST_ASSERT_NOT_NULL(myList->tail);
+	//printf("%p\n",&element[0]);
+	//printf("%p\n",&element[1]);
+	//printf("%p\n",&element[2]);
 	
 	ptr2Element = remove_Element(myList, &element[0]);
 	
+	//printf("%d\n",element[0].data);
 	TEST_ASSERT_EQUAL(2,myList->length);
 	TEST_ASSERT_EQUAL_PTR(&element[1],myList->head);
 	TEST_ASSERT_EQUAL_PTR(&element[2],myList->tail);
