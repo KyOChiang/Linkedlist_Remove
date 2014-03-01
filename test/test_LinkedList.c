@@ -193,3 +193,24 @@ void test_removeElement_0_within_4_elements_should_replace_the_head_pointer_with
 	TEST_ASSERT_EQUAL(123,ptr2Element->data);
 	TEST_ASSERT_EQUAL_PTR(&element[0],ptr2Element);
 }
+
+void test_removeElement_4_within_3_elements_and_1_isolated_should_return_NULL_Address(){
+	
+	// int length = 3, i = 0;
+	myList = createLinkedList();
+	Element element[4] = {{.next = &element[1],.data = 123},
+						  {.next = &element[2],.data = 145},
+						  {.next = NULL,.data = 456},
+						  {.next = NULL,.data = 789}};
+	
+	myList->head = &element[0];
+	myList->tail = &element[2];
+	myList->length = 4;
+	
+	ptr2Element = remove_Element(myList, &element[3]);
+	TEST_ASSERT_EQUAL_PTR(&element[0],myList->head);
+	TEST_ASSERT_EQUAL_PTR(&element[2],myList->tail);
+	TEST_ASSERT_EQUAL_PTR(NULL,element[2].next);
+	TEST_ASSERT_EQUAL(3,myList->length);
+	TEST_ASSERT_EQUAL_PTR(NULL,ptr2Element);
+}

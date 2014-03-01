@@ -14,20 +14,46 @@ LinkedList *createLinkedList(){
 	return list;
 }
 
+/* This is a remove function to remove element (just replacing pointer that point to element being removed).
+ * 
+ * Input:
+ * i			contain the start counting value.
+ * arrayElem	array that contain addresses of element to compare.
+ * tempStore	contain the origin myList->head value, for restore purpose
+ * 
+ * Output:
+ * return		contain the address of element being removed, return NULL if no remove operation done
+ */
+
 Element *remove_Element(LinkedList *myList, Element *elementPos){
 	
 	int i = 0;
 	Element arrayElem[myList->length], tempStore;
-	for(i=0;i<myList->length;i++,myList->head=(myList->head)->next){
-		arrayElem[i].next=myList->head;
-		// printf("%p\n", arrayElem[i].next);
+	tempStore.next = myList->head;
+	
+	while(myList->head != NULL){
+		arrayElem[i].next = myList->head;
+		myList->head = myList->head->next;
+		i++;
+	}
+	myList->head = tempStore.next;
+	
+	/* Determine the second last element.next pointer is point to last element or not.
+	 * If not, length - 1 and return an NULL back since nothing removed.
+	 * If yes, continue the next removed operation.
+	 */
+	if((arrayElem[(myList->length)-2].next)->next == NULL){
+		myList->length = myList->length - 1;
+		return NULL;
+	}
+	else{
+		for(i=0;i<myList->length;i++,myList->head=(myList->head)->next){
+			arrayElem[i].next=myList->head;
+		}
 	}
 	
-	myList->head = arrayElem[0].next;
+	myList->head = tempStore.next;
 	i = 0;
-	// printf("%p\n", myList->head);
-	// printf("%p\n", myList->head->next);
-	// printf("%p\n", myList->head->next->next);
 	
 	if(elementPos == arrayElem[0].next){
 		myList->head = myList->head->next;
@@ -47,7 +73,7 @@ Element *remove_Element(LinkedList *myList, Element *elementPos){
 			i++;
 			tempStore.next = (tempStore.next)->next;
 		}
-		(tempStore.next)->next = arrayElem[i+2].next;//myList->head->next->next;
+		(tempStore.next)->next = arrayElem[i+2].next;
 		myList->tail = arrayElem[(myList->length - 1)].next;
 		myList->length = (myList->length) -1;
 	}
