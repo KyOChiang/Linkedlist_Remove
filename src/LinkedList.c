@@ -25,7 +25,7 @@ LinkedList *createLinkedList(){
  * return		contain the address of element being removed, return NULL if no remove operation done
  */
 
-Element *remove_Element(LinkedList *myList, Element *elementPos){
+Element *remove_Element(LinkedList *myList, Element *element2Remove){
 	
 	int i = 0;
 	Element arrayElem[myList->length], tempStore;
@@ -55,12 +55,12 @@ Element *remove_Element(LinkedList *myList, Element *elementPos){
 	myList->head = tempStore.next;
 	i = 0;
 	
-	if(elementPos == arrayElem[0].next){
+	if(element2Remove == arrayElem[0].next){
 		myList->head = myList->head->next;
 		myList->tail = arrayElem[(myList->length - 1)].next;
 		myList->length = (myList->length) -1;
 	}
-	else if(elementPos == arrayElem[(myList->length - 1)].next){
+	else if(element2Remove == arrayElem[(myList->length - 1)].next){
 		myList->head = arrayElem[(myList->length) - 2].next;
 		myList->head->next = NULL;
 		myList->head = arrayElem[0].next;
@@ -69,7 +69,7 @@ Element *remove_Element(LinkedList *myList, Element *elementPos){
 	}
 	else{
 		tempStore.next = myList->head;
-		while(elementPos!=arrayElem[i+1].next){
+		while(element2Remove!=arrayElem[i+1].next){
 			i++;
 			tempStore.next = (tempStore.next)->next;
 		}
@@ -81,5 +81,5 @@ Element *remove_Element(LinkedList *myList, Element *elementPos){
 	// i+0->next = i+2
 	// i+1->next = i+3
 		
-	return elementPos; //Should return the address for element being removed.
+	return element2Remove; //Should return the address for element being removed.
 }
