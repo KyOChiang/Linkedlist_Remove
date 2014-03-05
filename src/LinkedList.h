@@ -15,5 +15,6 @@ typedef struct {
 //Declare function prototype
 LinkedList *createLinkedList();
 Element *remove_Element(LinkedList *myList, Element *elementPos);
-
+//void *remove_ElementX(LinkedList *myList, void *int2Compare, int(*compare)(void*, void*));
+int compareInt(void *v1, void *v2);
 #endif

@@ -49,7 +49,7 @@ void test_removeElement_0_should_replace_the_head_pointer_with_element0_next_poi
 	TEST_ASSERT_EQUAL_PTR(&element[0],ptr2Element);
 }
 
-void test_removeElement_1_should_replace_the_element0_pointer_with_element1_next_pointer(){
+/*void xtest_removeElement_1_should_replace_the_element0_pointer_with_element1_next_pointer(){
 	
 	// int length = 3, i = 0;
 	myList = createLinkedList();
@@ -73,7 +73,7 @@ void test_removeElement_1_should_replace_the_element0_pointer_with_element1_next
 	TEST_ASSERT_EQUAL_PTR(&element[1],ptr2Element);
 }
 
-void test_removeElement_2_should_replace_the_element1_pointer_with_element2_next_pointer(){
+void xtest_removeElement_2_should_replace_the_element1_pointer_with_element2_next_pointer(){
 	
 	// int length = 3, i = 0;
 	myList = createLinkedList();
@@ -96,7 +96,7 @@ void test_removeElement_2_should_replace_the_element1_pointer_with_element2_next
 	TEST_ASSERT_EQUAL_PTR(&element[2],ptr2Element);
 }
 
-void test_removeElement_2_within_4_elements_should_replace_the_element1_pointer_with_element2_next_pointer(){
+void xtest_removeElement_2_within_4_elements_should_replace_the_element1_pointer_with_element2_next_pointer(){
 	
 	// int length = 3, i = 0;
 	myList = createLinkedList();
@@ -121,7 +121,7 @@ void test_removeElement_2_within_4_elements_should_replace_the_element1_pointer_
 	TEST_ASSERT_EQUAL_PTR(&element[2],ptr2Element);
 }
 
-void test_removeElement_1_within_4_elements_should_replace_the_element0_pointer_with_element1_next_pointer(){
+void xtest_removeElement_1_within_4_elements_should_replace_the_element0_pointer_with_element1_next_pointer(){
 	
 	// int length = 3, i = 0;
 	myList = createLinkedList();
@@ -146,7 +146,7 @@ void test_removeElement_1_within_4_elements_should_replace_the_element0_pointer_
 	TEST_ASSERT_EQUAL_PTR(&element[1],ptr2Element);
 }
 
-void test_removeElement_3_within_4_elements_should_replace_the_element2_pointer_with_element3_next_pointer(){
+void xtest_removeElement_3_within_4_elements_should_replace_the_element2_pointer_with_element3_next_pointer(){
 	
 	// int length = 3, i = 0;
 	myList = createLinkedList();
@@ -170,7 +170,7 @@ void test_removeElement_3_within_4_elements_should_replace_the_element2_pointer_
 	TEST_ASSERT_EQUAL_PTR(&element[3],ptr2Element);
 }
 
-void test_removeElement_0_within_4_elements_should_replace_the_head_pointer_with_element0_next_pointer(){
+void xtest_removeElement_0_within_4_elements_should_replace_the_head_pointer_with_element0_next_pointer(){
 	
 	// int length = 3, i = 0;
 	myList = createLinkedList();
@@ -194,7 +194,7 @@ void test_removeElement_0_within_4_elements_should_replace_the_head_pointer_with
 	TEST_ASSERT_EQUAL_PTR(&element[0],ptr2Element);
 }
 
-void test_removeElement_4_within_3_elements_and_1_isolated_should_return_NULL_Address(){
+void xtest_removeElement_4_within_3_elements_and_1_isolated_should_return_NULL_Address(){
 	
 	// int length = 3, i = 0;
 	myList = createLinkedList();
@@ -213,4 +213,43 @@ void test_removeElement_4_within_3_elements_and_1_isolated_should_return_NULL_Ad
 	TEST_ASSERT_EQUAL_PTR(NULL,element[2].next);
 	TEST_ASSERT_EQUAL(3,myList->length);
 	TEST_ASSERT_EQUAL_PTR(NULL,ptr2Element);
+}*/
+
+/*void test_compare_to_compare_integer_val_with_integer_data_inside_one_element(){
+	int v1 = 9, v2 = 3, v3 = 123;
+	int checkStatus;
+	myList = createLinkedList();
+	Element element = {.next = NULL,.data = 123};
+	
+	myList->head = &element;
+	myList->tail = &element;
+	myList->length = 1;
+	
+	/* Check if 2 values are equal or not?
+	 * If equal, a "1" will print out.
+	 * If not equal, a "0" will print out.
+	 */
+	// printf("%d\n", (v1==v2));
+	// printf("%d\n", (v1==v1));
+	// printf("%d\n", (v1==(v2+v2+v2)));
+	
+	/* By passing a value to compare with the pass in element.data.
+	 * checkStatus = 0, if they are not equal.
+	 * checkStatus = 1, if they are equal.
+	 */
+	/*remove_ElementX(myList, &v1, compareInt);
+	remove_ElementX(myList, &v2, compareInt);
+	remove_ElementX(myList, &v3, compareInt);
+}*/
+
+void test_compareInt_should_return_true_if_both_are_equal(){
+	int v1 = 2, v2 = 123, v3 = 2;
+	int checkStatus;
+	
+	checkStatus = compareInt(&v1, &v2);
+	TEST_ASSERT_FALSE(checkStatus);
+	checkStatus = compareInt(&v1, &v3);
+	TEST_ASSERT_TRUE(checkStatus);
 }
+
+

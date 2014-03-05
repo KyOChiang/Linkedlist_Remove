@@ -83,3 +83,21 @@ Element *remove_Element(LinkedList *myList, Element *element2Remove){
 		
 	return element2Remove; //Should return the address for element being removed.
 }
+
+/*void *remove_ElementX(LinkedList *myList, void *int2Compare, int(*compare)(void*, void*)){
+	//compare((myList->head->data), int2Compare);
+	int status, value1 = (myList->head->data);
+	
+	status = compare(&value1,int2Compare);
+	printf("%d\n", status);
+}*/
+
+int compareInt(void *v1, void *v2){
+	int *value1Int, *value2Int;
+	
+	value1Int = (int *)v1;
+	value2Int = (int *)v2;
+
+	return (*value1Int == *value2Int);
+}
+
