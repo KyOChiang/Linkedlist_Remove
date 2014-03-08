@@ -17,70 +17,81 @@ LinkedList *createLinkedList(){
 /* This is a remove function to remove element (just replacing pointer that point to element being removed).
  * 
  * Input:
- * i			contain the start counting value.
- * arrayElem	array that contain addresses of element to compare.
- * tempStore	contain the origin myList->head value, for restore purpose
+ * headPtr/		To store the myList->head as behave like myList->head, it can be updated to next address
+ * currentPtr	and do the comparison. This is because I do not want myList->head value change easily.
  * 
  * Output:
  * return		contain the address of element being removed, return NULL if no remove operation done
  */
 
-Element *remove_Element(LinkedList *myList, Element *element2Remove){
+ Element *List_remove(LinkedList *myList, Element *element2Remove){
+	Element *headPtr, *currentPtr;
+	currentPtr = myList->head;
+	headPtr = myList->head;
 	
-	int i = 0;
-	Element arrayElem[myList->length], tempStore;
-	tempStore.next = myList->head;
-	
-	while(myList->head != NULL){
-		arrayElem[i].next = myList->head;
-		myList->head = myList->head->next;
-		i++;
+	if((myList->head == NULL)&&(myList->tail == NULL)&&(myList->length == 0)){
+		return element2Remove; //Since no remove operation done, return a null.
 	}
-	myList->head = tempStore.next;
 	
-	/* Determine the second last element.next pointer is point to last element or not.
-	 * If not, length - 1 and return an NULL back since nothing removed.
-	 * If yes, continue the next removed operation.
+	if(((myList->tail->next) == NULL)&&(myList->tail < element2Remove)){
+		return NULL; //To check whether that last element being
+					 // removed is isolated or not.
+	}
+	
+	if(element2Remove == currentPtr){
+		myList->head = currentPtr->next;
+		myList->length = (myList->length) -1;
+	}
+	else if(element2Remove == myList->tail){
+		while(currentPtr->next->next != NULL){
+			currentPtr = currentPtr->next;
+		}
+		currentPtr->next = NULL;
+		myList->tail = currentPtr;
+		myList->length = (myList->length) -1;
+	}
+	else{
+	/* To delete any element in the middle of list of any length.
+	 * The replace pointer should be following
+	 * If remove 2nd element, 1st element->next will point to 3rd element.
+	 * If remove 3rd element, 2st element->next will point to 4rd element.
+	 * If remove 4nd element, 3st element->next will point to 5rd element.
+	 *
+	 * ...... This show a order sequence.
+	 * 					element[0].next = &element[2];
+	 * 					element[1].next = &element[3];
+	 * 					element[2].next = &element[4];
+	 * ...... Until the n.
+	 * 					element[n].next = &element[n+2];
+	 *
+	 * ...... At here. In condition that element[1] being removed.
+	 * If currentPtr(contain address of element[0]) not equal to element2Remove.
+	 * currentPtr will point to the next element address which is element[1].
+	 *
+	 * At the same time, if headPtr(address of element[0])->next is not
+	 * equal to element[1], it will update and point to next element address.
+	 * In this case, headPtr->next is equal to element2Remove(element[1]),
+	 * so it do nothing here.
+	 *
+	 * ...... At the end
+	 * We get 2 ptr which are currentPtr(address element[1]) and
+	 * headPtr(address element[0]) and form the assignment as above.
+	 * 					headPtr->next = currentPtr->next;
+	 *					which equivalent to
+	 *					element[0].next = &element[2];
 	 */
-	if((arrayElem[(myList->length)-2].next)->next == NULL){
-		myList->length = myList->length - 1;
-		return NULL;
-	}
-	else{
-		for(i=0;i<myList->length;i++,myList->head=(myList->head)->next){
-			arrayElem[i].next=myList->head;
+		while(currentPtr != element2Remove){
+			currentPtr = currentPtr->next; 
 		}
-	}
-	
-	myList->head = tempStore.next;
-	i = 0;
-	
-	if(element2Remove == arrayElem[0].next){
-		myList->head = myList->head->next;
-		myList->tail = arrayElem[(myList->length - 1)].next;
-		myList->length = (myList->length) -1;
-	}
-	else if(element2Remove == arrayElem[(myList->length - 1)].next){
-		myList->head = arrayElem[(myList->length) - 2].next;
-		myList->head->next = NULL;
-		myList->head = arrayElem[0].next;
-		myList->tail = arrayElem[(myList->length)-2].next;
-		myList->length = (myList->length) -1;
-	}
-	else{
-		tempStore.next = myList->head;
-		while(element2Remove!=arrayElem[i+1].next){
-			i++;
-			tempStore.next = (tempStore.next)->next;
+		while(headPtr->next != element2Remove){
+			headPtr = headPtr->next;
 		}
-		(tempStore.next)->next = arrayElem[i+2].next;
-		myList->tail = arrayElem[(myList->length - 1)].next;
+		headPtr->next = currentPtr->next;
 		myList->length = (myList->length) -1;
+	
 	}
 	
-	// i+0->next = i+2
-	// i+1->next = i+3
-		
+	
 	return element2Remove; //Should return the address for element being removed.
 }
 
