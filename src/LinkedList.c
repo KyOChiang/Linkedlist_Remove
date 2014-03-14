@@ -30,17 +30,21 @@ LinkedList *createLinkedList(){
 	headPtr = myList->head;
 	
 	if((myList->head == NULL)&&(myList->tail == NULL)&&(myList->length == 0)){
-		return element2Remove; //Since no remove operation done, return a null.
+		return NULL; //Since no remove operation done, return a null.
 	}
 	
-	if(((myList->tail->next) == NULL)&&(myList->tail < element2Remove)){
-		return NULL; //To check whether that last element being
-					 // removed is isolated or not.
+	//To check whether that last element being removed is isolated or not.
+	while(myList->head != element2Remove){
+		myList->head = myList->head->next;
+		while((myList->head == myList->tail) && (myList->tail != element2Remove)){
+			myList->head = currentPtr;
+			return NULL;
+		}
 	}
-	
-	if(element2Remove == currentPtr){
-		myList->head = currentPtr->next;
-		myList->length = (myList->length) -1;
+
+	myList->head = currentPtr;
+	if(element2Remove == myList->head){
+		myList->head = myList->head->next;
 	}
 	else if(element2Remove == myList->tail){
 		while(currentPtr->next->next != NULL){
@@ -48,7 +52,6 @@ LinkedList *createLinkedList(){
 		}
 		currentPtr->next = NULL;
 		myList->tail = currentPtr;
-		myList->length = (myList->length) -1;
 	}
 	else{
 	/* To delete any element in the middle of list of any length.
@@ -87,10 +90,8 @@ LinkedList *createLinkedList(){
 			headPtr = headPtr->next;
 		}
 		headPtr->next = currentPtr->next;
-		myList->length = (myList->length) -1;
-	
 	}
-	
+	myList->length--;
 	
 	return element2Remove; //Should return the address for element being removed.
 }

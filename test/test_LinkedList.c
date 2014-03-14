@@ -122,29 +122,6 @@ void test_removeElement_2_should_replace_the_element1_nextPtr_to_NULL(){
 	TEST_ASSERT_EQUAL_PTR(&element[2],ptr2Element);
 }
 
-void test_removeElement_2_should_do_nothing_because_it_isolated_from_other_element(){
-	
-	myList = createLinkedList();
-	Element element[3] = {{.next = &element[1],.data = 123},
-						  {.next = NULL,.data = 456},
-						  {.next = NULL,.data = 789}};
-	
-	myList->head = &element[0];
-	myList->tail = &element[1];
-	myList->length = 2;
-	
-	ptr2Element = List_remove(myList, &element[2]);
-	
-	TEST_ASSERT_EQUAL(2,myList->length);
-	TEST_ASSERT_EQUAL_PTR(&element[0],myList->head);
-	TEST_ASSERT_EQUAL_PTR(&element[1],myList->tail);
-	TEST_ASSERT_EQUAL(123,element[0].data);
-	TEST_ASSERT_EQUAL(456,element[1].data);
-	TEST_ASSERT_EQUAL(789,element[2].data);
-	TEST_ASSERT_NULL(ptr2Element);
-	
-}
-
 void test_removeElement_1_within_4_elements_should_replace_the_element0_next_pointer_with_element1_next_pointer(){
 	
 	myList = createLinkedList();
@@ -209,7 +186,45 @@ void test_removeElement_0_within_4_elements_should_replace_the_head_pointer_with
 	TEST_ASSERT_EQUAL_PTR(&element[0],ptr2Element);
 }
 
-void test_removeElement_3_within_3_elements_and_1_isolated_element_should_return_NULL_Address(){
+
+   /**
+    * Given:
+    *
+    *  tail-------------------+
+    *                         V
+    *         +------+    +------+        +------+
+    *  head-->|elem0 |--->|elem1 |--+     |elem2 |--+
+    *         +------+    +------+  |     +------+  |
+    *                              _v_             _v_
+    *
+    * Attempt to remove element 2, but it is not in the linked-list, so expect
+    * nothing is done on the list and NULL is returned. 
+    */
+
+void test_removeElement_2_should_do_nothing_and_return_a_NULL(){
+	
+	myList = createLinkedList();
+	Element element[3] = {{.next = &element[1],.data = 123},
+						  {.next = NULL,.data = 456},
+						  {.next = NULL,.data = 789}};
+	
+	myList->head = &element[0];
+	myList->tail = &element[1];
+	myList->length = 2;
+	
+	ptr2Element = List_remove(myList, &element[2]);
+	
+	TEST_ASSERT_EQUAL(2,myList->length);
+	TEST_ASSERT_EQUAL_PTR(&element[0],myList->head);
+	TEST_ASSERT_EQUAL_PTR(&element[1],myList->tail);
+	TEST_ASSERT_EQUAL(123,element[0].data);
+	TEST_ASSERT_EQUAL(456,element[1].data);
+	TEST_ASSERT_EQUAL(789,element[2].data);
+	TEST_ASSERT_NULL(ptr2Element);
+	
+}
+
+void test_removeElement_3_should_do_nothing_and_return_a_NULL(){
 	
 	myList = createLinkedList();
 	Element element[4] = {{.next = &element[1],.data = 123},
