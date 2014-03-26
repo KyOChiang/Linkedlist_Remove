@@ -254,9 +254,8 @@ void xtest_compareInt_should_return_true_if_both_are_equal(){
 	TEST_ASSERT_TRUE(checkStatus);
 }
 
-void test_compare_to_compare_integer_val_with_integer_data_inside_one_element(){
+void test_compare_Element_to_compare_integer_val_with_integer_data_inside_one_element(){
 	int v1 = 12, v2 = 123, v3 = 13;
-	int checkStatus;
 	myList = createLinkedList();
 	Element element = {.next = NULL,.data = 123};
 	
@@ -277,11 +276,35 @@ void test_compare_to_compare_integer_val_with_integer_data_inside_one_element(){
 	 * checkStatus = 1, if they are equal.
 	 */
 
-	TEST_ASSERT_NULL(remove_ElementX(myList, &v1, compareInt));
-	TEST_ASSERT_NULL(remove_ElementX(myList, &v3, compareInt));
-	TEST_ASSERT_EQUAL_PTR(&element,remove_ElementX(myList, &v2, compareInt));
+	TEST_ASSERT_NULL(compare_Element(myList, &v1, compareInt));
+	TEST_ASSERT_NULL(compare_Element(myList, &v3, compareInt));
+	TEST_ASSERT_EQUAL_PTR(&element,compare_Element(myList, &v2, compareInt));
 }
 
+void test_compare_Element_to_compare_integer_val_with_integer_data_within_four_element\
+_return_NULL_if_both_equal_otherwise_return_the_match_element_addr(){
+	int v1 = 12, v2 = 123, v3 = 13, v4 = 145, v5 = 5678, v6 = 789;
+	int checkStatus;
+	myList = createLinkedList();
+	Element element[4] = {{.next = &element[1],.data = 423},
+						  {.next = &element[2],.data = 145},
+						  {.next = &element[3],.data = 123},
+						  {.next = NULL,.data = 789}};
+	
+	myList->head = &element[0];
+	myList->tail = &element[3];
+	myList->length = 4;
+	
+	/* It should return null if there are no data inside the elements
+	 * match with the pass in data.
+	 */
+	TEST_ASSERT_NULL(compare_Element(myList, &v1, compareInt));
+	TEST_ASSERT_NULL(compare_Element(myList, &v3, compareInt));
+	TEST_ASSERT_NULL(compare_Element(myList, &v5, compareInt));
+	TEST_ASSERT_EQUAL_PTR(&element[2],compare_Element(myList, &v2, compareInt));
+	TEST_ASSERT_EQUAL_PTR(&element[1],compare_Element(myList, &v4, compareInt));
+	TEST_ASSERT_EQUAL_PTR(&element[3],compare_Element(myList, &v6, compareInt));
+}
 
 
 
