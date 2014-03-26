@@ -106,16 +106,18 @@ void *compare_Element(LinkedList *myList, void *int2Compare, int(*compare)(void*
 		status = compare(&value, int2Compare);
 		//printf("%d  \n", status);
 		if(status == 1){
+			//printf("%p", ptr);
+			List_remove(myList,ptr);
 			//printf("1 here\n");
 			return ptr;
 		}
 		else if(status == 0){
 			ptr = ptr->next;
 			length --;
-		}
-		if(length == 0){
-			//printf("2 here\n");
-			return NULL;
+			if(length == 0){
+				//printf("2 here\n");
+				return NULL;
+			}
 		}
 	}
 }
