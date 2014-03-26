@@ -8,7 +8,7 @@ LinkedList *myList;
 
 Element *ptr2Element;
 
-void test_createLinkedList_should_create_and_init_LinkedList_head_tail_and_length(){
+void xtest_createLinkedList_should_create_and_init_LinkedList_head_tail_and_length(){
 	myList = createLinkedList();
 	
 	TEST_ASSERT_NOT_NULL(myList);
@@ -17,7 +17,7 @@ void test_createLinkedList_should_create_and_init_LinkedList_head_tail_and_lengt
 	TEST_ASSERT_EQUAL(0, myList->length);
 }
 
-void test_removeElement_with_no_element_and_no_operation_complete(){
+void xtest_removeElement_with_no_element_and_no_operation_complete(){
 	
 	myList = createLinkedList();
 
@@ -31,7 +31,7 @@ void test_removeElement_with_no_element_and_no_operation_complete(){
 	
 }
 
-void test_removeElement_0_should_replace_the_head_pointer_with_element0_next_pointer(){
+void xtest_removeElement_0_should_replace_the_head_pointer_with_element0_next_pointer(){
 	
 	myList = createLinkedList();
 	Element element[3] = {{.next = &element[1],.data = 123},
@@ -58,7 +58,7 @@ void test_removeElement_0_should_replace_the_head_pointer_with_element0_next_poi
 	TEST_ASSERT_EQUAL_PTR(&element[0],ptr2Element);
 }
 
-void test_removeElement_1_should_replace_the_element0_next_pointer_with_element1_next_pointer(){
+void xtest_removeElement_1_should_replace_the_element0_next_pointer_with_element1_next_pointer(){
 	
 	myList = createLinkedList();
 	Element element[3] = {{.next = &element[1],.data = 123},
@@ -79,7 +79,7 @@ void test_removeElement_1_should_replace_the_element0_next_pointer_with_element1
 	TEST_ASSERT_EQUAL_PTR(&element[1],ptr2Element);
 }
 
-void test_removeElement_2_within_4elements_should_\
+void xtest_removeElement_2_within_4elements_should_\
 replace_the_element1_next_pointer_with_element2_next_pointer(){
 	
 	myList = createLinkedList();
@@ -102,7 +102,7 @@ replace_the_element1_next_pointer_with_element2_next_pointer(){
 	TEST_ASSERT_EQUAL_PTR(&element[2],ptr2Element);
 }
 
-void test_removeElement_2_should_replace_the_element1_nextPtr_to_NULL(){
+void xtest_removeElement_2_should_replace_the_element1_nextPtr_to_NULL(){
 	
 	myList = createLinkedList();
 	Element element[3] = {{.next = &element[1],.data = 123},
@@ -122,7 +122,7 @@ void test_removeElement_2_should_replace_the_element1_nextPtr_to_NULL(){
 	TEST_ASSERT_EQUAL_PTR(&element[2],ptr2Element);
 }
 
-void test_removeElement_1_within_4_elements_should_replace_the_element0_next_pointer_with_element1_next_pointer(){
+void xtest_removeElement_1_within_4_elements_should_replace_the_element0_next_pointer_with_element1_next_pointer(){
 	
 	myList = createLinkedList();
 	Element element[4] = {{.next = &element[1],.data = 123},
@@ -144,7 +144,7 @@ void test_removeElement_1_within_4_elements_should_replace_the_element0_next_poi
 	TEST_ASSERT_EQUAL_PTR(&element[1],ptr2Element);
 }
 
-void test_removeElement_3_within_4_elements_should_replace_the_element2_pointer_with_element3_next_pointer(){
+void xtest_removeElement_3_within_4_elements_should_replace_the_element2_pointer_with_element3_next_pointer(){
 	
 	myList = createLinkedList();
 	Element element[4] = {{.next = &element[1],.data = 123},
@@ -165,7 +165,7 @@ void test_removeElement_3_within_4_elements_should_replace_the_element2_pointer_
 	TEST_ASSERT_EQUAL_PTR(&element[3],ptr2Element);
 }
 
-void test_removeElement_0_within_4_elements_should_replace_the_head_pointer_with_element0_next_pointer(){
+void xtest_removeElement_0_within_4_elements_should_replace_the_head_pointer_with_element0_next_pointer(){
 	
 	myList = createLinkedList();
 	Element element[4] = {{.next = &element[1],.data = 123},
@@ -201,7 +201,7 @@ void test_removeElement_0_within_4_elements_should_replace_the_head_pointer_with
     * nothing is done on the list and NULL is returned. 
     */
 
-void test_removeElement_2_should_do_nothing_and_return_a_NULL(){
+void xtest_removeElement_2_should_do_nothing_and_return_a_NULL(){
 	
 	myList = createLinkedList();
 	Element element[3] = {{.next = &element[1],.data = 123},
@@ -224,7 +224,7 @@ void test_removeElement_2_should_do_nothing_and_return_a_NULL(){
 	
 }
 
-void test_removeElement_3_should_do_nothing_and_return_a_NULL(){
+void xtest_removeElement_3_should_do_nothing_and_return_a_NULL(){
 	
 	myList = createLinkedList();
 	Element element[4] = {{.next = &element[1],.data = 123},
@@ -244,7 +244,7 @@ void test_removeElement_3_should_do_nothing_and_return_a_NULL(){
 	TEST_ASSERT_EQUAL_PTR(NULL,ptr2Element);
 }
 
-void test_compareInt_should_return_true_if_both_are_equal(){
+void xtest_compareInt_should_return_true_if_both_are_equal(){
 	int v1 = 2, v2 = 123, v3 = 2;
 	int checkStatus;
 	
@@ -254,8 +254,8 @@ void test_compareInt_should_return_true_if_both_are_equal(){
 	TEST_ASSERT_TRUE(checkStatus);
 }
 
-/*void test_compare_to_compare_integer_val_with_integer_data_inside_one_element(){
-	int v1 = 9, v2 = 3, v3 = 123;
+void test_compare_to_compare_integer_val_with_integer_data_inside_one_element(){
+	int v1 = 12, v2 = 123, v3 = 13;
 	int checkStatus;
 	myList = createLinkedList();
 	Element element = {.next = NULL,.data = 123};
@@ -276,10 +276,11 @@ void test_compareInt_should_return_true_if_both_are_equal(){
 	 * checkStatus = 0, if they are not equal.
 	 * checkStatus = 1, if they are equal.
 	 */
-	/*remove_ElementX(myList, &v1, compareInt);
-	remove_ElementX(myList, &v2, compareInt);
-	remove_ElementX(myList, &v3, compareInt);
-}*/
+
+	TEST_ASSERT_NULL(remove_ElementX(myList, &v1, compareInt));
+	TEST_ASSERT_NULL(remove_ElementX(myList, &v3, compareInt));
+	TEST_ASSERT_EQUAL_PTR(&element,remove_ElementX(myList, &v2, compareInt));
+}
 
 
 
